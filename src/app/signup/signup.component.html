@@ -1,0 +1,45 @@
+<form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+
+  <fieldset>
+    <label for="email-signup">Email</label>
+    <input id="email-signup" name="email-signup" type="email" [(ngModel)]="user.email" #email="ngModel" required>
+  </fieldset>
+
+  <div *ngIf="myForm.submitted && email.errors">
+    <span *ngIf="email.errors?.['required']">L'email est requis</span>
+  </div>
+
+  <fieldset>
+    <label for="firstname-signup">Firstname</label>
+    <input id="firstname-signup" name="firstname-signup" type="text" [(ngModel)]="user.firstname" #firstname="ngModel" required minlength="3" maxlength="15">
+  </fieldset>
+
+  <div *ngIf="myForm.submitted && firstname.errors">
+    <span *ngIf="firstname.errors?.['required']">Le prénom est requis</span>
+    <span *ngIf="firstname.errors?.['minlength']">La longueur minimale du prénom doit être supérieure à 3 caractères</span>
+    <span *ngIf="firstname.errors?.['maxlength']">La longueur maximale du prénom  doit être inférieure à 15 caractères</span>
+  </div>
+
+  <fieldset>
+    <label for="lastname-signup">Lastname</label>
+    <input id="lastname-signup" name="lastname-signup" type="text" [(ngModel)]="user.lastname" #lastname="ngModel"required minlength="3" maxlength="15">
+  </fieldset>
+
+  <div *ngIf="myForm.submitted && lastname.errors">
+    <span *ngIf="lastname.errors?.['required']">Le nom est requis</span>
+    <span *ngIf="lastname.errors?.['minlength']">La longueur minimale du nom doit être supérieure à 3 caractères</span>
+    <span *ngIf="lastname.errors?.['maxlength']">La longueur maximale du nom  doit être inférieure à 15 caractères</span>
+  </div>
+
+  <fieldset>
+    <label for="password-signup">Password</label>
+    <input id="password-signup" name="password-signup" type="text" [(ngModel)]="user.password" #password="ngModel" required minlength="6">
+  </fieldset>
+
+  <div *ngIf="myForm.submitted && password.errors">
+    <span *ngIf="password.errors?.['required']">Le mot de passe est requis</span>
+  </div>
+
+  <button type="submit">Inscription</button>
+
+</form>
